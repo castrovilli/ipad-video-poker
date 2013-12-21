@@ -25,6 +25,9 @@ NSString * suit_short_string(int suit);
 -(NSString *)longName;
 -(NSString *)shortName;
 
+-(BOOL)isSameCardAsCard:(PGCardsCard *)otherCard;
+-(BOOL)isNotSameCardAsCard:(PGCardsCard *)otherCard;
+
 -(BOOL)isSameRankAsCard:(PGCardsCard *)otherCard;
 -(BOOL)isNotSameRankAsCard:(PGCardsCard *)otherCard;
 -(BOOL)isLowerRankThanCard:(PGCardsCard *)otherCard;

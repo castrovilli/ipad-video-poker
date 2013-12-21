@@ -109,6 +109,14 @@ NSString * rank_short_string(int rank) {
 
 //  Card comparison methods
 
+-(BOOL)isSameCardAsCard:(PGCardsCard *)otherCard {
+    return (_index == otherCard.index) ? YES : NO;
+}
+
+-(BOOL)isNotSameCardAsCard:(PGCardsCard *)otherCard {
+    return (_index != otherCard.index) ? YES : NO;
+}
+
 -(BOOL)isSameRankAsCard:(PGCardsCard *)otherCard {
     return (_rank == otherCard.rank) ? YES : NO;
 }

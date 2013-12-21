@@ -28,6 +28,110 @@
 }
 
 
+//  Tests isSameCardAsCard evalutes true when cards are the same
+
+- (void)testSameCardTrue
+{
+    PGCardsCard * card1 = [[PGCardsCard alloc] initWithIndex:0];
+    PGCardsCard * card2 = [[PGCardsCard alloc] initWithIndex:0];
+    XCTAssertTrue([card1 isSameCardAsCard:card2]);
+    
+    card1 = [[PGCardsCard alloc] initWithIndex:10];
+    card2 = [[PGCardsCard alloc] initWithIndex:10];
+    XCTAssertTrue([card1 isSameCardAsCard:card2]);
+    
+    card1 = [[PGCardsCard alloc] initWithIndex:21];
+    card2 = [[PGCardsCard alloc] initWithIndex:21];
+    XCTAssertTrue([card1 isSameCardAsCard:card2]);
+    
+    card1 = [[PGCardsCard alloc] initWithIndex:42];
+    card2 = [[PGCardsCard alloc] initWithIndex:42];
+    XCTAssertTrue([card1 isSameCardAsCard:card2]);
+    
+    card1 = [[PGCardsCard alloc] initWithIndex:51];
+    card2 = [[PGCardsCard alloc] initWithIndex:51];
+    XCTAssertTrue([card1 isSameCardAsCard:card2]);
+}
+
+
+//  Tests isSameCardAsCard evalutes false when cards are not the same
+
+- (void)testSameCardFalse
+{
+    PGCardsCard * card1 = [[PGCardsCard alloc] initWithIndex:0];
+    PGCardsCard * card2 = [[PGCardsCard alloc] initWithIndex:11];
+    XCTAssertFalse([card1 isSameCardAsCard:card2]);
+    
+    card1 = [[PGCardsCard alloc] initWithIndex:15];
+    card2 = [[PGCardsCard alloc] initWithIndex:16];
+    XCTAssertFalse([card1 isSameCardAsCard:card2]);
+    
+    card1 = [[PGCardsCard alloc] initWithIndex:25];
+    card2 = [[PGCardsCard alloc] initWithIndex:9];
+    XCTAssertFalse([card1 isSameCardAsCard:card2]);
+    
+    card1 = [[PGCardsCard alloc] initWithIndex:38];
+    card2 = [[PGCardsCard alloc] initWithIndex:45];
+    XCTAssertFalse([card1 isSameCardAsCard:card2]);
+    
+    card1 = [[PGCardsCard alloc] initWithIndex:51];
+    card2 = [[PGCardsCard alloc] initWithIndex:6];
+    XCTAssertFalse([card1 isSameCardAsCard:card2]);
+}
+
+
+//  Tests isNotSameCardAsCard evalutes true when cards are not the same
+
+- (void)testNotSameCardTrue
+{
+    PGCardsCard * card1 = [[PGCardsCard alloc] initWithIndex:0];
+    PGCardsCard * card2 = [[PGCardsCard alloc] initWithIndex:11];
+    XCTAssertTrue([card1 isNotSameCardAsCard:card2]);
+    
+    card1 = [[PGCardsCard alloc] initWithIndex:15];
+    card2 = [[PGCardsCard alloc] initWithIndex:16];
+    XCTAssertTrue([card1 isNotSameCardAsCard:card2]);
+    
+    card1 = [[PGCardsCard alloc] initWithIndex:25];
+    card2 = [[PGCardsCard alloc] initWithIndex:9];
+    XCTAssertTrue([card1 isNotSameCardAsCard:card2]);
+    
+    card1 = [[PGCardsCard alloc] initWithIndex:38];
+    card2 = [[PGCardsCard alloc] initWithIndex:45];
+    XCTAssertTrue([card1 isNotSameCardAsCard:card2]);
+    
+    card1 = [[PGCardsCard alloc] initWithIndex:51];
+    card2 = [[PGCardsCard alloc] initWithIndex:6];
+    XCTAssertTrue([card1 isNotSameCardAsCard:card2]);
+}
+
+
+//  Tests isNotSameCardAsCard evalutes false when cards are the same
+
+- (void)testNotSameCardFalse
+{
+    PGCardsCard * card1 = [[PGCardsCard alloc] initWithIndex:0];
+    PGCardsCard * card2 = [[PGCardsCard alloc] initWithIndex:0];
+    XCTAssertFalse([card1 isNotSameCardAsCard:card2]);
+    
+    card1 = [[PGCardsCard alloc] initWithIndex:10];
+    card2 = [[PGCardsCard alloc] initWithIndex:10];
+    XCTAssertFalse([card1 isNotSameCardAsCard:card2]);
+    
+    card1 = [[PGCardsCard alloc] initWithIndex:21];
+    card2 = [[PGCardsCard alloc] initWithIndex:21];
+    XCTAssertFalse([card1 isNotSameCardAsCard:card2]);
+    
+    card1 = [[PGCardsCard alloc] initWithIndex:42];
+    card2 = [[PGCardsCard alloc] initWithIndex:42];
+    XCTAssertFalse([card1 isNotSameCardAsCard:card2]);
+    
+    card1 = [[PGCardsCard alloc] initWithIndex:51];
+    card2 = [[PGCardsCard alloc] initWithIndex:51];
+    XCTAssertFalse([card1 isNotSameCardAsCard:card2]);
+}
+
+
 //  Tests isSameRankAsCard evaluates true when cards are equal
 
 - (void)testCardsEqualRankTrue
