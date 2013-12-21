@@ -9,11 +9,11 @@
 #import <XCTest/XCTest.h>
 #import "PGCardsCard.h"
 
-@interface PGCardsCardTests : XCTestCase
+@interface PGCardsCardInitTests : XCTestCase
 
 @end
 
-@implementation PGCardsCardTests
+@implementation PGCardsCardInitTests
 
 - (void)setUp
 {
@@ -83,6 +83,14 @@
         XCTAssertNotNil(card);
         XCTAssertEqual([card index], 13 * index++);
     }
+}
+
+- (void)testInitDifferentAcesSameRank
+{
+    PGCardsCard * card1 = [[PGCardsCard alloc] initWithRank:1 andSuit:1];
+    PGCardsCard * card2 = [[PGCardsCard alloc] initWithRank:14 andSuit:1];
+    XCTAssertEqual([card1 index], [card2 index]);
+    XCTAssertEqual([card1 rank], [card2 rank]);
 }
 
 
