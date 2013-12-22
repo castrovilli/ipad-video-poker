@@ -9,11 +9,17 @@
 #import <UIKit/UIKit.h>
 
 @interface VideoPokerViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UIImageView *card_1_view;
-@property (strong, nonatomic) IBOutlet UIImageView *card_2_view;
-@property (strong, nonatomic) IBOutlet UIImageView *card_3_view;
-@property (strong, nonatomic) IBOutlet UIImageView *card_4_view;
-@property (strong, nonatomic) IBOutlet UIImageView *card_5_view;
+
+@property (strong, nonatomic) IBOutlet UIButton *cardButton1;
+@property (strong, nonatomic) IBOutlet UIButton *cardButton2;
+@property (strong, nonatomic) IBOutlet UIButton *cardButton3;
+@property (strong, nonatomic) IBOutlet UIButton *cardButton4;
+@property (strong, nonatomic) IBOutlet UIButton *cardButton5;
+
+- (IBAction)cardTouched:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UIButton *drawButton;
+
 - (IBAction)changeCards:(id)sender;
 
 @end

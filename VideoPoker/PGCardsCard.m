@@ -8,6 +8,9 @@
 
 #import "PGCardsCard.h"
 
+
+//  Helper functions
+
 static int get_rank_from_index(int index) {
     int rank = index % 13 + 1;
     return (rank == 1) ? 14 : rank;
@@ -52,6 +55,8 @@ NSString * rank_short_string(int rank) {
 }
 
 
+//  Class implementation
+
 @implementation PGCardsCard {
     int _index;
     int _sortingIndex;
@@ -62,14 +67,13 @@ NSString * rank_short_string(int rank) {
 
 //  Initialization methods
 
--(PGCardsCard *)initWithIndex:(int)index {
+- (PGCardsCard *)initWithIndex:(int)index {
     if ( index < 0 || index > 51 ) {
         NSLog(@"Index is out of range.");
         return nil;
     }
 
     if ( (self = [super init]) ) {
-        
         _index = index;
         _suit = get_suit_from_index(index);
         _rank = get_rank_from_index(index);
@@ -79,7 +83,7 @@ NSString * rank_short_string(int rank) {
     return self;
 }
 
--(PGCardsCard *)initWithRank:(int)rank andSuit:(int)suit {
+- (PGCardsCard *)initWithRank:(int)rank andSuit:(int)suit {
     if ( suit < 0 || suit > 3 ) {
         return nil;
     }
@@ -91,53 +95,53 @@ NSString * rank_short_string(int rank) {
     return [self initWithIndex:index];
 }
 
--(PGCardsCard *)init {
+- (PGCardsCard *)init {
     return [self initWithIndex:0];
 }
 
 
 //  Card name methods
 
--(NSString *)longName {
+- (NSString *)longName {
     return [[NSString alloc] initWithFormat:@"%@ of %@",rank_long_string(_rank),suit_long_string(_suit)];
 }
 
--(NSString *)shortName {
+- (NSString *)shortName {
     return [[NSString alloc] initWithFormat:@"%@%@",rank_short_string(_rank),suit_short_string(_suit)];
 }
 
 
 //  Card comparison methods
 
--(BOOL)isSameCardAsCard:(PGCardsCard *)otherCard {
+- (BOOL)isSameCardAsCard:(PGCardsCard *)otherCard {
     return (_index == otherCard.index) ? YES : NO;
 }
 
--(BOOL)isNotSameCardAsCard:(PGCardsCard *)otherCard {
+- (BOOL)isNotSameCardAsCard:(PGCardsCard *)otherCard {
     return (_index != otherCard.index) ? YES : NO;
 }
 
--(BOOL)isSameRankAsCard:(PGCardsCard *)otherCard {
+- (BOOL)isSameRankAsCard:(PGCardsCard *)otherCard {
     return (_rank == otherCard.rank) ? YES : NO;
 }
 
--(BOOL)isNotSameRankAsCard:(PGCardsCard *)otherCard {
+- (BOOL)isNotSameRankAsCard:(PGCardsCard *)otherCard {
     return (_rank != otherCard.rank) ? YES : NO;
 }
 
--(BOOL)isLowerRankThanCard:(PGCardsCard *)otherCard {
+- (BOOL)isLowerRankThanCard:(PGCardsCard *)otherCard {
     return (_rank < otherCard.rank) ? YES : NO;
 }
 
--(BOOL)isHigherRankThanCard:(PGCardsCard *)otherCard {
+- (BOOL)isHigherRankThanCard:(PGCardsCard *)otherCard {
     return (_rank > otherCard.rank) ? YES : NO;
 }
 
--(BOOL)isLowerOrEqualRankThanCard:(PGCardsCard *)otherCard {
+- (BOOL)isLowerOrEqualRankThanCard:(PGCardsCard *)otherCard {
     return (_rank <= otherCard.rank) ? YES : NO;
 }
 
--(BOOL)isHigherOrEqualRankThanCard:(PGCardsCard *)otherCard {
+- (BOOL)isHigherOrEqualRankThanCard:(PGCardsCard *)otherCard {
     return (_rank >= otherCard.rank) ? YES : NO;
 }
 

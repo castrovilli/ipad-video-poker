@@ -78,6 +78,16 @@
 		DA8724811865FB1900229280 /* PGCardsCard.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8724801865FB1900229280 /* PGCardsCard.m */; };
 		DA8724821865FB1900229280 /* PGCardsCard.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8724801865FB1900229280 /* PGCardsCard.m */; };
 		DA896B091866173300303E2F /* PGCardsCardComparisonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA896B081866173300303E2F /* PGCardsCardComparisonTests.m */; };
+		DA896B0C1866249400303E2F /* PGCardsHand.m in Sources */ = {isa = PBXBuildFile; fileRef = DA896B0B1866249400303E2F /* PGCardsHand.m */; };
+		DA896B0D1866249400303E2F /* PGCardsHand.m in Sources */ = {isa = PBXBuildFile; fileRef = DA896B0B1866249400303E2F /* PGCardsHand.m */; };
+		DA896B10186624DC00303E2F /* PGCardsDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = DA896B0F186624DC00303E2F /* PGCardsDeck.m */; };
+		DA896B11186624DC00303E2F /* PGCardsDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = DA896B0F186624DC00303E2F /* PGCardsDeck.m */; };
+		DA896B131866267A00303E2F /* PGCardsDeckTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA896B121866267A00303E2F /* PGCardsDeckTests.m */; };
+		DAB3CBCB18668A3600A54004 /* PGCardsPokerTable.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB3CBCA18668A3600A54004 /* PGCardsPokerTable.m */; };
+		DAB3CBCC18668A3600A54004 /* PGCardsPokerTable.m in Sources */ = {isa = PBXBuildFile; fileRef = DAB3CBCA18668A3600A54004 /* PGCardsPokerTable.m */; };
+		DAE1C222186650E20060ACEF /* PGCardsHandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE1C221186650E20060ACEF /* PGCardsHandTests.m */; };
+		DAF6455E18667374007E91D2 /* PGCardsPokerHand.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF6455D18667374007E91D2 /* PGCardsPokerHand.m */; };
+		DAF6455F18667374007E91D2 /* PGCardsPokerHand.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF6455D18667374007E91D2 /* PGCardsPokerHand.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,6 +177,16 @@
 		DA87247F1865FB1900229280 /* PGCardsCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGCardsCard.h; sourceTree = "<group>"; };
 		DA8724801865FB1900229280 /* PGCardsCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGCardsCard.m; sourceTree = "<group>"; };
 		DA896B081866173300303E2F /* PGCardsCardComparisonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGCardsCardComparisonTests.m; sourceTree = "<group>"; };
+		DA896B0A1866249400303E2F /* PGCardsHand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGCardsHand.h; sourceTree = "<group>"; };
+		DA896B0B1866249400303E2F /* PGCardsHand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGCardsHand.m; sourceTree = "<group>"; };
+		DA896B0E186624DC00303E2F /* PGCardsDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGCardsDeck.h; sourceTree = "<group>"; };
+		DA896B0F186624DC00303E2F /* PGCardsDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGCardsDeck.m; sourceTree = "<group>"; };
+		DA896B121866267A00303E2F /* PGCardsDeckTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGCardsDeckTests.m; sourceTree = "<group>"; };
+		DAB3CBC918668A3600A54004 /* PGCardsPokerTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGCardsPokerTable.h; sourceTree = "<group>"; };
+		DAB3CBCA18668A3600A54004 /* PGCardsPokerTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGCardsPokerTable.m; sourceTree = "<group>"; };
+		DAE1C221186650E20060ACEF /* PGCardsHandTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGCardsHandTests.m; sourceTree = "<group>"; };
+		DAF6455C18667374007E91D2 /* PGCardsPokerHand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGCardsPokerHand.h; sourceTree = "<group>"; };
+		DAF6455D18667374007E91D2 /* PGCardsPokerHand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGCardsPokerHand.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,8 +251,16 @@
 				DA6B3F4B1865F75500D41613 /* Main.storyboard */,
 				DA87247F1865FB1900229280 /* PGCardsCard.h */,
 				DA8724801865FB1900229280 /* PGCardsCard.m */,
+				DA896B0A1866249400303E2F /* PGCardsHand.h */,
+				DA896B0E186624DC00303E2F /* PGCardsDeck.h */,
+				DA896B0F186624DC00303E2F /* PGCardsDeck.m */,
+				DA896B0B1866249400303E2F /* PGCardsHand.m */,
 				DA6B3F4E1865F75500D41613 /* VideoPokerViewController.h */,
 				DA6B3F4F1865F75500D41613 /* VideoPokerViewController.m */,
+				DAB3CBC918668A3600A54004 /* PGCardsPokerTable.h */,
+				DAB3CBCA18668A3600A54004 /* PGCardsPokerTable.m */,
+				DAF6455C18667374007E91D2 /* PGCardsPokerHand.h */,
+				DAF6455D18667374007E91D2 /* PGCardsPokerHand.m */,
 				DA6B3F511865F75500D41613 /* Images.xcassets */,
 				DA6B3F401865F75500D41613 /* Supporting Files */,
 			);
@@ -254,6 +282,8 @@
 		DA6B3F5E1865F75500D41613 /* VideoPokerTests */ = {
 			isa = PBXGroup;
 			children = (
+				DAE1C221186650E20060ACEF /* PGCardsHandTests.m */,
+				DA896B121866267A00303E2F /* PGCardsDeckTests.m */,
 				DA896B081866173300303E2F /* PGCardsCardComparisonTests.m */,
 				DA6B3F641865F75500D41613 /* VideoPokerTests.m */,
 				DA6B3F5F1865F75500D41613 /* Supporting Files */,
@@ -485,8 +515,12 @@
 			files = (
 				DA6B3F4A1865F75500D41613 /* VideoPokerAppDelegate.m in Sources */,
 				DA6B3F461865F75500D41613 /* main.m in Sources */,
+				DA896B0C1866249400303E2F /* PGCardsHand.m in Sources */,
+				DAB3CBCB18668A3600A54004 /* PGCardsPokerTable.m in Sources */,
+				DA896B10186624DC00303E2F /* PGCardsDeck.m in Sources */,
 				DA8724811865FB1900229280 /* PGCardsCard.m in Sources */,
 				DA6B3F501865F75500D41613 /* VideoPokerViewController.m in Sources */,
+				DAF6455E18667374007E91D2 /* PGCardsPokerHand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,8 +529,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA8724821865FB1900229280 /* PGCardsCard.m in Sources */,
+				DAB3CBCC18668A3600A54004 /* PGCardsPokerTable.m in Sources */,
 				DA896B091866173300303E2F /* PGCardsCardComparisonTests.m in Sources */,
 				DA6B3F651865F75500D41613 /* VideoPokerTests.m in Sources */,
+				DAE1C222186650E20060ACEF /* PGCardsHandTests.m in Sources */,
+				DA896B0D1866249400303E2F /* PGCardsHand.m in Sources */,
+				DAF6455F18667374007E91D2 /* PGCardsPokerHand.m in Sources */,
+				DA896B11186624DC00303E2F /* PGCardsDeck.m in Sources */,
+				DA896B131866267A00303E2F /* PGCardsDeckTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
