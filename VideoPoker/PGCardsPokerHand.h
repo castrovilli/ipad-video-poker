@@ -11,7 +11,7 @@
 
 @interface PGCardsPokerHand : PGCardsHand
 
--(void)evaluate;
+-(int)evaluate;
 -(NSString *)evaluateString;
 
 @end

@@ -18,6 +18,9 @@ enum PGCardsPokerGameState {
 @interface PGCardsPokerTable : NSObject
 
 @property (nonatomic, readonly) enum PGCardsPokerGameState gameState;
+@property (nonatomic) int currentBet;
+@property (nonatomic) int currentCash;
+
 
 -(BOOL)isCardFlipped:(int)cardPosition;
 -(void)switchCardFlip:(int)cardPosition;

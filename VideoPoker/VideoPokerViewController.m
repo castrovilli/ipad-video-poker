@@ -31,10 +31,10 @@
     NSString * fileString;
     
     if ( [_pokerMachine isCardFlipped:cardPosition] ) {
-        fileString = @"b.gif";
+        fileString = @"card_back_blue";
     } else {
-        int cardIndex = [_pokerMachine cardIndexAtPosition:cardPosition] + 1;
-        fileString = [[NSString alloc] initWithFormat:@"%i.gif", cardIndex];
+        int cardIndex = [_pokerMachine cardIndexAtPosition:cardPosition];
+        fileString = [[NSString alloc] initWithFormat:@"card%i", cardIndex];
     }
     
     [_cardButtons[cardPosition - 1] setImage:[UIImage imageNamed:fileString] forState:UIControlStateNormal];
@@ -48,12 +48,14 @@
     for ( UIButton * button in _cardButtons ) {
         button.enabled = YES;
     }
+    _betTextField.enabled = NO;
 }
 
 -(void)disableCardButtons {
     for ( UIButton * button in _cardButtons ) {
         button.enabled = NO;
     }
+    _betTextField.enabled = YES;
 }
 
 
@@ -68,12 +70,22 @@
                     _cardButton3, _cardButton4, _cardButton5, nil];
     
     _pokerMachine = [[PGCardsPokerTable alloc] init];
+    _winningsLabel.text = [[NSString alloc] initWithFormat:@"%i", _pokerMachine.currentCash];
+    [self updateWinningsLabel];
+    _betTextField.text = [[NSString alloc] initWithFormat:@"%i", _pokerMachine.currentBet];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)updateWinningsLabel {
+    NSNumberFormatter * nf = [NSNumberFormatter new];
+    nf.numberStyle = NSNumberFormatterDecimalStyle;
+    _winningsLabel.text = [[NSString alloc] initWithFormat:@"$%@", [nf stringFromNumber:[NSNumber numberWithInt:_pokerMachine.currentCash]]];
 }
 
 
@@ -85,7 +97,9 @@
     if ( _pokerMachine.gameState == POKER_GAMESTATE_DEALED ) {
         [self enableCardButtons];
         [self drawCards];
-        [_drawButton setTitle:@"Exchange cards" forState:UIControlStateNormal];
+        [_drawButton setTitle:@"Exchange cards or stand" forState:UIControlStateNormal];
+        _resultsLabel.text = @"Touch a card to exchange it, or just keep what you have.";
+        [self updateWinningsLabel];
     } else if ( _pokerMachine.gameState == POKER_GAMESTATE_FLIPPED ) {
         [_pokerMachine advanceGameState];        // TODO: consider whether this line is necessary
         [self disableCardButtons];
@@ -94,6 +108,7 @@
         
         NSString * results = [_pokerMachine evaluationString];
         _resultsLabel.text = results;
+        [self updateWinningsLabel];
         
     } else {
         assert(0);          //  We should never get here
@@ -113,4 +128,7 @@
     }
 }
 
+- (IBAction)betFieldExit:(id)sender {
+    [sender resignFirstResponder];
+}
 @end

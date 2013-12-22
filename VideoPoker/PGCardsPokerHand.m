@@ -9,6 +9,9 @@
 #import "PGCardsPokerHand.h"
 #import "PGCardsPokerHandInfo.h"
 
+static const int videoPokerWinningsTable[] = {0, 1, 2, 3, 4, 6, 9, 25, 50, 800};
+
+
 @implementation PGCardsPokerHand {
     PGCardsPokerHandInfo * _handInfo;
 }
@@ -27,7 +30,7 @@
 
 //  Public method to evaluate the poker hand
 
-- (void) evaluate {
+- (int) evaluate {
     [_handInfo resetInfo];
     [self getRankMatches];
     
@@ -44,41 +47,84 @@
             }
         }
     }
+    
+    if ( _handInfo.royalFlush ) {
+        _handInfo.pokerHandType = POKERHAND_ROYALFLUSH;
+        _handInfo.videoPokerHandType = VIDEOPOKERHAND_ROYALFLUSH;
+    } else if ( _handInfo.straightFlush ) {
+        _handInfo.pokerHandType = POKERHAND_STRAIGHTFLUSH;
+        _handInfo.videoPokerHandType = VIDEOPOKERHAND_STRAIGHTFLUSH;
+    } else if ( _handInfo.four ) {
+        _handInfo.pokerHandType = POKERHAND_FOUR;
+        _handInfo.videoPokerHandType = VIDEOPOKERHAND_FOUR;
+    } else if ( _handInfo.three && _handInfo.lowPair ) {
+        _handInfo.pokerHandType = POKERHAND_FULLHOUSE;
+        _handInfo.videoPokerHandType = VIDEOPOKERHAND_FULLHOUSE;
+    } else if ( _handInfo.flush ) {
+        _handInfo.pokerHandType = POKERHAND_FLUSH;
+        _handInfo.videoPokerHandType = VIDEOPOKERHAND_FLUSH;
+    } else if ( _handInfo.straight ) {
+        _handInfo.pokerHandType = POKERHAND_STRAIGHT;
+        _handInfo.videoPokerHandType = VIDEOPOKERHAND_STRAIGHT;
+    } else if ( _handInfo.three ) {
+        _handInfo.pokerHandType = POKERHAND_THREE;
+        _handInfo.videoPokerHandType = VIDEOPOKERHAND_THREE;
+    } else if ( _handInfo.highPair ) {
+        _handInfo.pokerHandType = POKERHAND_TWOPAIR;
+        _handInfo.videoPokerHandType = VIDEOPOKERHAND_TWOPAIR;
+    } else if ( _handInfo.lowPair ) {
+        _handInfo.pokerHandType = POKERHAND_PAIR;
+        
+        //  For video poker, only jacks or higher count as winning pairs.
+        
+        if ( _handInfo.lowPair >= 11 ) {
+            _handInfo.videoPokerHandType = VIDEOPOKERHAND_JACKSORBETTER;
+        } else {
+            _handInfo.videoPokerHandType = VIDEOPOKERHAND_NOWIN;
+        }
+    } else {
+        _handInfo.pokerHandType = POKERHAND_HIGHCARD;
+        _handInfo.videoPokerHandType = VIDEOPOKERHAND_NOWIN;
+    }
+    
+    return videoPokerWinningsTable[_handInfo.videoPokerHandType];
 }
 
 
 //  Public method to get a string representation of the most recent evaluation
 
 - (NSString *)evaluateString {
-    static const char * cardNames[] = {"NONE", "ace", "two", "three", "four", "five", "six", "seven",
+    static const char * cardNamesSingular[] = {"NONE", "ace", "two", "three", "four", "five", "six", "seven",
         "eight", "nine", "ten", "jack", "queen", "king", "ace"};
+    static const char * cardNamesPlural[] = {"NONE", "aces", "twos", "threes", "fours", "fives", "sixes", "sevens",
+        "eights", "nines", "tens", "jacks", "queens", "kings", "aces"};
     NSString * returnString;
     
     //  TODO: capitalize strings properly.
     //  TODO: fix plural to get "sixes" instead of "sixs".
     
-    if ( _handInfo.royalFlush ) {
-        returnString = @"Royal flush";
-    } else if ( _handInfo.straightFlush ) {
-        returnString = [[NSString alloc] initWithFormat:@"Straight flush, %s high", cardNames[_handInfo.highCard]];
-    } else if ( _handInfo.four ) {
-        returnString = [[NSString alloc] initWithFormat:@"Four %ss", cardNames[_handInfo.four]];
-    } else if ( _handInfo.three && _handInfo.lowPair ) {
-        returnString = [[NSString alloc] initWithFormat:@"Full house, %ss full of %ss", cardNames[_handInfo.three],
-                        cardNames[_handInfo.lowPair]];
-    } else if ( _handInfo.flush ) {
-        returnString = [[NSString alloc] initWithFormat:@"Flush, %s high", cardNames[[_handInfo singleAtIndex:0]]];
-    } else if ( _handInfo.straight ) {
-        returnString = [[NSString alloc] initWithFormat:@"Straight, %s high", cardNames[_handInfo.highCard]];
-    } else if ( _handInfo.three ) {
-        returnString = [[NSString alloc] initWithFormat:@"Three %ss", cardNames[_handInfo.three]];
-    } else if ( _handInfo.highPair ) {
-        returnString = [[NSString alloc] initWithFormat:@"Two pair, %ss over %ss", cardNames[_handInfo.highPair],
-                        cardNames[_handInfo.lowPair]];
-    } else if ( _handInfo.lowPair ) {
-        returnString = [[NSString alloc] initWithFormat:@"Pair of %ss", cardNames[_handInfo.lowPair]];
+    if ( _handInfo.videoPokerHandType == VIDEOPOKERHAND_ROYALFLUSH ) {
+        returnString = @"Royal flush!";
+    } else if ( _handInfo.videoPokerHandType == VIDEOPOKERHAND_STRAIGHTFLUSH ) {
+        returnString = [[NSString alloc] initWithFormat:@"Straight flush, %s high!", cardNamesSingular[_handInfo.highCard]];
+    } else if ( _handInfo.videoPokerHandType == VIDEOPOKERHAND_FOUR ) {
+        returnString = [[NSString alloc] initWithFormat:@"Four %s!", cardNamesPlural[_handInfo.four]];
+    } else if ( _handInfo.videoPokerHandType == VIDEOPOKERHAND_FULLHOUSE ) {
+        returnString = [[NSString alloc] initWithFormat:@"Full house, %s full of %s!", cardNamesPlural[_handInfo.three],
+                        cardNamesPlural[_handInfo.lowPair]];
+    } else if ( _handInfo.videoPokerHandType == VIDEOPOKERHAND_FLUSH ) {
+        returnString = [[NSString alloc] initWithFormat:@"Flush, %s high!", cardNamesSingular[[_handInfo singleAtIndex:0]]];
+    } else if ( _handInfo.videoPokerHandType == VIDEOPOKERHAND_STRAIGHT ) {
+        returnString = [[NSString alloc] initWithFormat:@"Straight, %s high!", cardNamesSingular[_handInfo.highCard]];
+    } else if ( _handInfo.videoPokerHandType == VIDEOPOKERHAND_THREE ) {
+        returnString = [[NSString alloc] initWithFormat:@"Three %s!", cardNamesPlural[_handInfo.three]];
+    } else if ( _handInfo.videoPokerHandType == VIDEOPOKERHAND_TWOPAIR ) {
+        returnString = [[NSString alloc] initWithFormat:@"Two pair, %s over %s!", cardNamesPlural[_handInfo.highPair],
+                        cardNamesPlural[_handInfo.lowPair]];
+    } else if ( _handInfo.videoPokerHandType == VIDEOPOKERHAND_JACKSORBETTER ) {
+        returnString = [[NSString alloc] initWithFormat:@"Pair of %s!", cardNamesPlural[_handInfo.lowPair]];
     } else {
-        returnString = [[NSString alloc] initWithFormat:@"%s high", cardNames[[_handInfo singleAtIndex:0]]];
+        returnString = @"No win.";
     }
     
     return returnString;

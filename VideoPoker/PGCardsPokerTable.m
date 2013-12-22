@@ -15,6 +15,7 @@
     PGCardsPokerHand * _hand;
     PGCardsDeck * _deck;
     BOOL _flipped[5];
+    int _winRatio;
 }
 
 //  Initialization methods
@@ -24,6 +25,8 @@
         _deck = [[PGCardsDeck alloc] init];
         _hand = [[PGCardsPokerHand alloc] init];
         _gameState = POKER_GAMESTATE_INITIAL;
+        _currentBet = 50;
+        _currentCash = 1000;
         [self flipCards];
     }
     
@@ -92,13 +95,15 @@
         [_hand drawCards:5 fromDeck:_deck];
         [self unflipCards];
         
+        _currentCash -= _currentBet;
         _gameState = POKER_GAMESTATE_DEALED;
     } else if ( _gameState == POKER_GAMESTATE_DEALED ) {
         _gameState = POKER_GAMESTATE_FLIPPED;
     } else if ( _gameState == POKER_GAMESTATE_FLIPPED ) {
         [self replaceFlippedCards];
         [self unflipCards];
-        [_hand evaluate];
+        _winRatio = [_hand evaluate];
+        _currentCash += _winRatio * _currentBet;
         
         _gameState = POKER_GAMESTATE_EVALUATED;
     } else {
@@ -107,12 +112,22 @@
         [_deck shuffle];
         [_hand drawCards:5 fromDeck:_deck];
 
+        _currentCash -= _currentBet;
         _gameState = POKER_GAMESTATE_DEALED;
     }
 }
 
 - (NSString *)evaluationString {
-    return [_hand evaluateString];
+    NSString * winString;
+    if ( _winRatio ) {
+        NSNumberFormatter * nf = [NSNumberFormatter new];
+        nf.numberStyle = NSNumberFormatterDecimalStyle;
+        winString = [[NSString alloc] initWithFormat:@"You win $%@!", [nf stringFromNumber:[NSNumber numberWithInt:_winRatio * _currentBet]]];
+    } else {
+        winString = @"Better luck next time!";
+    }
+    
+    return [[NSString alloc] initWithFormat:@"%@ %@", [_hand evaluateString], winString];
 }
 
 @end
