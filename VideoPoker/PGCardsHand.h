@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "PGCardsDeck.h"
 
-@interface PGCardsHand : NSObject
+@interface PGCardsHand : NSObject {
+    NSMutableArray * _cards;
+}
 
 @property (nonatomic, readonly) NSUInteger size;
 

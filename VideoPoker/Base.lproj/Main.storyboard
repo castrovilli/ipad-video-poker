@@ -76,6 +76,13 @@
                                     <action selector="cardTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uNh-2U-AgE"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hand Information" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="396" translatesAutoresizingMaskIntoConstraints="NO" id="QoE-oR-K9d">
+                                <rect key="frame" x="119" y="331" width="396" height="260"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -86,6 +93,7 @@
                         <outlet property="cardButton4" destination="pSx-KJ-DZH" id="AVn-LT-bgs"/>
                         <outlet property="cardButton5" destination="zxg-wq-rHK" id="uGe-N8-dM6"/>
                         <outlet property="drawButton" destination="wAK-1d-vfm" id="hi1-Ls-k8i"/>
+                        <outlet property="resultsLabel" destination="QoE-oR-K9d" id="34j-6q-xwN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

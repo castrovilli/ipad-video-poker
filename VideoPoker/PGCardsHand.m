@@ -9,7 +9,6 @@
 #import "PGCardsHand.h"
 
 @implementation PGCardsHand {
-    NSMutableArray * _cards;
 }
 
 //  Initialization method

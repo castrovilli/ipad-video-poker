@@ -22,4 +22,6 @@
 
 - (IBAction)changeCards:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UILabel *resultsLabel;
+
 @end

@@ -98,6 +98,7 @@
     } else if ( _gameState == POKER_GAMESTATE_FLIPPED ) {
         [self replaceFlippedCards];
         [self unflipCards];
+        [_hand evaluate];
         
         _gameState = POKER_GAMESTATE_EVALUATED;
     } else {
@@ -108,6 +109,10 @@
 
         _gameState = POKER_GAMESTATE_DEALED;
     }
+}
+
+- (NSString *)evaluationString {
+    return [_hand evaluateString];
 }
 
 @end

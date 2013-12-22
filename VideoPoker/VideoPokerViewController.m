@@ -91,6 +91,10 @@
         [self disableCardButtons];
         [self drawCards];
         [_drawButton setTitle:@"Deal new hand" forState:UIControlStateNormal];
+        
+        NSString * results = [_pokerMachine evaluationString];
+        _resultsLabel.text = results;
+        
     } else {
         assert(0);          //  We should never get here
     }

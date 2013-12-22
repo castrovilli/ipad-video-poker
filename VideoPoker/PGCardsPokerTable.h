@@ -24,6 +24,7 @@ enum PGCardsPokerGameState {
 -(void)replaceFlippedCards;
 -(int)cardIndexAtPosition:(int)position;
 -(void)advanceGameState;
+-(NSString *)evaluationString;
 
 
 @end
