@@ -13,6 +13,9 @@
     PGCardsPokerHandInfo * _handInfo;
 }
 
+
+//  Initializer method
+
 - (PGCardsPokerHand *)init {
     if ( (self = [super init])) {
         _handInfo = [[PGCardsPokerHandInfo alloc] init];
@@ -20,6 +23,9 @@
     
     return self;
 }
+
+
+//  Public method to evaluate the poker hand
 
 - (void) evaluate {
     [_handInfo resetInfo];
@@ -39,6 +45,9 @@
         }
     }
 }
+
+
+//  Public method to get a string representation of the most recent evaluation
 
 - (NSString *)evaluateString {
     static const char * cardNames[] = {"NONE", "ace", "two", "three", "four", "five", "six", "seven",
@@ -75,6 +84,10 @@
     return returnString;
 }
 
+
+//  Private method which finds fours, threes, pairs and computes a list of single cards.
+//  TODO: document numeric format for single cards list.
+
 - (void)getRankMatches {
     int rankCounts[15] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     
@@ -104,6 +117,9 @@
     }
 }
 
+
+//  Private method which checks for a flush
+
 - (void)checkForFlush {
     int suitCounts[4] = {0, 0, 0, 0};
     
@@ -117,6 +133,9 @@
         }
     }
 }
+
+
+//  Private method which checks for a straight
 
 - (void)checkForStraight {
     int single0 = [_handInfo singleAtIndex:0];
