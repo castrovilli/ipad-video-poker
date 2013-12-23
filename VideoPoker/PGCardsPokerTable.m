@@ -104,8 +104,28 @@
         [self unflipCards];
         _winRatio = [_hand evaluate];
         _currentCash += _winRatio * _currentBet;
+        if ( _currentBet > _currentCash ) {
+            _currentBet = _currentCash;
+        }
         
-        _gameState = POKER_GAMESTATE_EVALUATED;
+        if ( _currentCash == 0 ) {
+           _gameState = POKER_GAMESTATE_GAMEOVER;
+        } else {
+            _gameState = POKER_GAMESTATE_EVALUATED;
+        }
+    } else if ( _gameState == POKER_GAMESTATE_GAMEOVER ) {
+        [_hand discardAllCardsToDeck:_deck];
+        [_deck replaceDiscards];
+        [_deck shuffle];
+        [_hand drawCards:5 fromDeck:_deck];
+        _gameState = POKER_GAMESTATE_NEWGAME;
+        _currentBet = 50;
+        _currentCash = 1000;
+        [self flipCards];
+    } else if ( _gameState == POKER_GAMESTATE_NEWGAME ) {
+        [self unflipCards];
+        _currentCash -= _currentBet;
+        _gameState = POKER_GAMESTATE_DEALED;
     } else {
         [_hand discardAllCardsToDeck:_deck];
         [_deck replaceDiscards];

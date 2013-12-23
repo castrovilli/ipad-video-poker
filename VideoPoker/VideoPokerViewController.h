@@ -29,6 +29,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *betTextField;
 @property (strong, nonatomic) IBOutlet UILabel *winningsLabel;
 
+- (IBAction)betFieldEditBegin:(id)sender;
+- (IBAction)betFieldEditEnd:(id)sender;
 
 
 @end
