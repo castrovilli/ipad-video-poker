@@ -48,6 +48,9 @@ static const int videoPokerWinningsTable[] = {0, 1, 2, 3, 4, 6, 9, 25, 50, 800};
         }
     }
     
+    
+    //  Determine type of poker hand
+    
     if ( _handInfo.royalFlush ) {
         _handInfo.pokerHandType = POKERHAND_ROYALFLUSH;
         _handInfo.videoPokerHandType = VIDEOPOKERHAND_ROYALFLUSH;
@@ -87,6 +90,9 @@ static const int videoPokerWinningsTable[] = {0, 1, 2, 3, 4, 6, 9, 25, 50, 800};
         _handInfo.videoPokerHandType = VIDEOPOKERHAND_NOWIN;
     }
     
+    
+    //  Return win ratio for the type of poker hand
+    
     return videoPokerWinningsTable[_handInfo.videoPokerHandType];
 }
 
@@ -99,9 +105,6 @@ static const int videoPokerWinningsTable[] = {0, 1, 2, 3, 4, 6, 9, 25, 50, 800};
     static const char * cardNamesPlural[] = {"NONE", "aces", "twos", "threes", "fours", "fives", "sixes", "sevens",
         "eights", "nines", "tens", "jacks", "queens", "kings", "aces"};
     NSString * returnString;
-    
-    //  TODO: capitalize strings properly.
-    //  TODO: fix plural to get "sixes" instead of "sixs".
     
     if ( _handInfo.videoPokerHandType == VIDEOPOKERHAND_ROYALFLUSH ) {
         returnString = @"Royal flush!";
@@ -132,7 +135,6 @@ static const int videoPokerWinningsTable[] = {0, 1, 2, 3, 4, 6, 9, 25, 50, 800};
 
 
 //  Private method which finds fours, threes, pairs and computes a list of single cards.
-//  TODO: document numeric format for single cards list.
 
 - (void)getRankMatches {
     int rankCounts[15] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -158,7 +160,8 @@ static const int videoPokerWinningsTable[] = {0, 1, 2, 3, 4, 6, 9, 25, 50, 800};
         } else if ( currentCount == 4 ) {
             _handInfo.four = rankCountIndex;
         } else {
-            assert(0);      // We should never get fives-of-a-kind
+            NSLog(@"Anomalous rank count in getRankMatches:");
+            assert(0);      // We should never get fives-of-a-kind, or higher
         }
     }
 }

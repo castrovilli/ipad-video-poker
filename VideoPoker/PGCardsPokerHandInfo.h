@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+
+//  Enumeration for regular poker hand types
+
 enum PGCardsPokerHandType {
     POKERHAND_HIGHCARD,
     POKERHAND_PAIR,
@@ -20,6 +23,9 @@ enum PGCardsPokerHandType {
     POKERHAND_STRAIGHTFLUSH,
     POKERHAND_ROYALFLUSH
 };
+
+
+//  Enumeration for video poker hand types
 
 enum PGCardsVideoPokerHandType {
     VIDEOPOKERHAND_NOWIN,
@@ -35,7 +41,12 @@ enum PGCardsVideoPokerHandType {
 };
 
 
+//  Class interface
+
 @interface PGCardsPokerHandInfo : NSObject
+
+
+//  Properties
 
 @property (nonatomic) u_int32_t singles;
 @property (nonatomic) int lowPair;
@@ -50,9 +61,13 @@ enum PGCardsVideoPokerHandType {
 @property (nonatomic) enum PGCardsPokerHandType pokerHandType;
 @property (nonatomic) enum PGCardsVideoPokerHandType videoPokerHandType;
 
+
+//  Public methods
+
 - (void)resetInfo;
 - (void)addSingle:(int)newSingle;
 - (BOOL)allSingles;
 - (int)singleAtIndex:(int)index;
+
 
 @end

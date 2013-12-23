@@ -8,28 +8,38 @@
 
 #import <Foundation/Foundation.h>
 
+
+//  Enumeration for game state. See implementation for explanations of each state.
+
 enum PGCardsPokerGameState {
     POKER_GAMESTATE_INITIAL,
     POKER_GAMESTATE_DEALED,
-    POKER_GAMESTATE_FLIPPED,
     POKER_GAMESTATE_EVALUATED,
     POKER_GAMESTATE_GAMEOVER,
     POKER_GAMESTATE_NEWGAME
 };
 
+
+//  Class interface
+
 @interface PGCardsPokerTable : NSObject
 
-@property (nonatomic, readonly) enum PGCardsPokerGameState gameState;
-@property (nonatomic) int currentBet;
-@property (nonatomic) int currentCash;
 
+//  Properties
+
+@property (nonatomic, readonly) enum PGCardsPokerGameState gameState;
+@property (strong, nonatomic) NSString * evaluationString;
+@property (nonatomic, readonly) int currentCash;
+@property (nonatomic) int currentBet;
+
+
+//  Public methods
 
 -(BOOL)isCardFlipped:(int)cardPosition;
 -(void)switchCardFlip:(int)cardPosition;
 -(void)replaceFlippedCards;
 -(int)cardIndexAtPosition:(int)position;
 -(void)advanceGameState;
--(NSString *)evaluationString;
 
 
 @end

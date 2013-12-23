@@ -10,6 +10,9 @@
 
 @interface VideoPokerViewController : UIViewController
 
+
+//  Properties and action for card buttons
+
 @property (strong, nonatomic) IBOutlet UIButton *cardButton1;
 @property (strong, nonatomic) IBOutlet UIButton *cardButton2;
 @property (strong, nonatomic) IBOutlet UIButton *cardButton3;
@@ -18,17 +21,25 @@
 
 - (IBAction)cardTouched:(id)sender;
 
+
+//  Property and action for main button
+
 @property (strong, nonatomic) IBOutlet UIButton *drawButton;
 
 - (IBAction)changeCards:(id)sender;
 
+
+//  Properties for results and winnings labels
+
 @property (strong, nonatomic) IBOutlet UILabel *resultsLabel;
-
-- (IBAction)betFieldExit:(id)sender;
-
-@property (strong, nonatomic) IBOutlet UITextField *betTextField;
 @property (strong, nonatomic) IBOutlet UILabel *winningsLabel;
 
+
+//  Property and actions for bet text field
+
+@property (strong, nonatomic) IBOutlet UITextField *betTextField;
+
+- (IBAction)betFieldExit:(id)sender;
 - (IBAction)betFieldEditBegin:(id)sender;
 - (IBAction)betFieldEditEnd:(id)sender;
 

@@ -27,6 +27,7 @@
     }
 }
 
+
 - (void)drawCard:(int)cardPosition {
     NSString * fileString;
     
@@ -42,20 +43,14 @@
 }
 
 
-//  Private methods for enabling and disabling card buttons
+//  Private methods for enabling and disabling card buttons.
 
--(void)enableCardButtons {
+- (void)enableCardButtons:(BOOL)buttonStatus andBetTextField:(BOOL)betStatus {
     for ( UIButton * button in _cardButtons ) {
-        button.enabled = YES;
+        button.enabled = buttonStatus;
     }
-    _betTextField.enabled = NO;
-}
-
--(void)disableCardButtons {
-    for ( UIButton * button in _cardButtons ) {
-        button.enabled = NO;
-    }
-    _betTextField.enabled = YES;
+    
+    _betTextField.enabled = betStatus;
 }
 
 
@@ -67,13 +62,12 @@
 
     _cardButtons = [[NSArray alloc] initWithObjects:_cardButton1, _cardButton2,
                     _cardButton3, _cardButton4, _cardButton5, nil];
-    [self disableCardButtons];
+    [self enableCardButtons:NO andBetTextField:YES];
     
     _pokerMachine = [[PGCardsPokerTable alloc] init];
-    _winningsLabel.text = [[NSString alloc] initWithFormat:@"%i", _pokerMachine.currentCash];
-    [self updateWinningsLabel];
-    _betTextField.text = [[NSString alloc] initWithFormat:@"%i", _pokerMachine.currentBet];
+    [self updateBetAndWinnings];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -82,59 +76,88 @@
 }
 
 
-- (void)updateWinningsLabel {
+//  Private method to update winnings label and bet text field with
+//  values from the poker machine.
+
+- (void)updateBetAndWinnings {
     NSNumberFormatter * nf = [NSNumberFormatter new];
     nf.numberStyle = NSNumberFormatterDecimalStyle;
-    _winningsLabel.text = [[NSString alloc] initWithFormat:@"$%@", [nf stringFromNumber:[NSNumber numberWithInt:_pokerMachine.currentCash]]];
+    _winningsLabel.text = [[NSString alloc] initWithFormat:@"$%@",
+                           [nf stringFromNumber:[NSNumber numberWithInt:_pokerMachine.currentCash]]];
+    
+    _betTextField.text = [[NSString alloc] initWithFormat:@"%i", _pokerMachine.currentBet];
 }
 
 
-//  Action method invoked when main button is touched
+//  Private method to update button title and results label
+
+- (void)updateButtonTitle:(NSString *)newTitle andResultsLabel:(NSString *)newLabel {
+    [_drawButton setTitle:newTitle forState:UIControlStateNormal];
+    _resultsLabel.text = newLabel;
+}
+
+
+//  Action method invoked when main button is touched. The primary function is to
+//  advance the game state of the poker machine, and then to re-draw the cards and
+//  update the winnings label and the bet text field. In addition, the card buttons
+//  and bet text field are enabled and disabled as appropriate, and the button text
+//  and message are updated.
 
 - (IBAction)changeCards:(id)sender {
     [_pokerMachine advanceGameState];
-    
+    [self drawCards];
+    [self updateBetAndWinnings];
+
     if ( _pokerMachine.gameState == POKER_GAMESTATE_DEALED ) {
-        [self enableCardButtons];
-        [self drawCards];
-        [_drawButton setTitle:@"Exchange cards or stand" forState:UIControlStateNormal];
-        _resultsLabel.text = @"Touch a card to exchange it, or just keep what you have.";
-        _betTextField.text = [[NSString alloc] initWithFormat:@"%i", _pokerMachine.currentBet];
-        [self updateWinningsLabel];
-    } else if ( _pokerMachine.gameState == POKER_GAMESTATE_FLIPPED ) {
-        [_pokerMachine advanceGameState];        // TODO: consider whether this line is necessary
-        [self disableCardButtons];
-        [self drawCards];
         
-        NSString * results = [_pokerMachine evaluationString];
-        _resultsLabel.text = results;
-        [self updateWinningsLabel];
-        _betTextField.text = [[NSString alloc] initWithFormat:@"%i", _pokerMachine.currentBet];
+        //  The initial cards have been dealt, so enable the card buttons for flipping,
+        //  and disable the bet field.
         
-        if ( _pokerMachine.gameState == POKER_GAMESTATE_GAMEOVER ) {
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Game over!" message:@"You ran out of cash!" delegate:nil cancelButtonTitle:@"Start New Game" otherButtonTitles:nil];
-            [alert show];
-            [self disableCardButtons];
-            [_drawButton setTitle:@"Start new game" forState:UIControlStateNormal];
-        } else {
-            [_drawButton setTitle:@"Deal new hand" forState:UIControlStateNormal];
-            
-        }
+        [self enableCardButtons:YES andBetTextField:NO];
+        [self updateButtonTitle:@"Exchange cards or stand"
+                andResultsLabel:@"Touch a card to exchange it, or just keep what you have."];
+        
+    } else if ( _pokerMachine.gameState == POKER_GAMESTATE_EVALUATED ) {
+        
+        //  The cards have been exchanged and we're at the end of the hand, so disable the
+        //  card buttons and enable the bet text field to allow a new bet to be entered.
+        
+        [self enableCardButtons:NO andBetTextField:YES];
+        [self updateButtonTitle:@"Deal new hand" andResultsLabel:_pokerMachine.evaluationString];
+        
+    } else if ( _pokerMachine.gameState == POKER_GAMESTATE_GAMEOVER ) {
+        
+        //  The cards have been exchanged and we're at the end of the hand, but the game is
+        //  over since we've run out of cash, so disable both the card buttons and the bet
+        //  text field, leaving only the option to start a new game via the main button.
+        
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Game over!" message:@"You ran out of cash!" delegate:nil cancelButtonTitle:@"Start New Game" otherButtonTitles:nil];
+        [alert show];
+        
+        [self enableCardButtons:NO andBetTextField:NO];
+        [self updateButtonTitle:@"Start new game" andResultsLabel:_pokerMachine.evaluationString];
+        
     } else if ( _pokerMachine.gameState == POKER_GAMESTATE_NEWGAME ) {
-        [self disableCardButtons];
-        [self drawCards];
-        _betTextField.text = [[NSString alloc] initWithFormat:@"%i", _pokerMachine.currentBet];
-        [self updateWinningsLabel];
-        [_drawButton setTitle:@"Deal your first hand!" forState:UIControlStateNormal];
-        _resultsLabel.text = @"Welcome to Video Poker! Deal your first hand to begin.";
+        
+        //  We've started a new game after losing the last one, so reset the fields to their
+        //  initial values, and disable the card buttons and enable the bet field.
+        
+        [self enableCardButtons:NO andBetTextField:YES];
+        [self updateButtonTitle:@"Deal your first hand!"
+                andResultsLabel:@"Welcome to Video Poker! Deal your first hand to begin."];
 
     } else {
-        assert(0);          //  We should never get here
+        
+        //  We should never get here, so log error and abort if we do.
+        
+        NSLog(@"Unknown game state in changeCards:");
+        assert(0);
+        
     }
 }
 
 
-//  Action method invoked to flip the card image when a card button is touched
+//  Action method invoked to flip the card image and re-draw it when a card button is touched.
 
 - (IBAction)cardTouched:(id)sender {
     for ( int buttonsIndex = 0; buttonsIndex < 5; ++buttonsIndex ) {
@@ -146,23 +169,54 @@
     }
 }
 
+
+//  Action method to dismiss keyboard when hitting return. We don't want to call
+//  resignFirstResponder here, as that would dismiss the keyboard even when the
+//  entry is invalid, which we don't want to do. However, removing this method
+//  prevents the keyboard from being dismissed at all, which we don't want to do.
+//  Currently unclear to me why this empty method makes all the difference. Possibly
+//  enabling the draw button is responsible for making this control lose first
+//  responder status, but it still doesn't explain why this empty method makes a
+//  difference.
+
 - (IBAction)betFieldExit:(id)sender {
 }
+
+
+//  Action method to disable to main button when editing text, since we need
+//  to validate that entry, and we don't want the user clicking the button
+//  with an invalid entry.
+
 - (IBAction)betFieldEditBegin:(id)sender {
     _drawButton.enabled = NO;
 }
 
+
+//  Action method to validate the bet entry once editing has finished.
+
 - (IBAction)betFieldEditEnd:(id)sender {
     if ( [self validateBetEntry] ) {
-        _pokerMachine.currentBet = [_betTextField.text integerValue];
         
+        //  Entry is valid, so update current bet in poker machine and enable main button.
+        
+        _pokerMachine.currentBet = [_betTextField.text integerValue];
         _drawButton.enabled = YES;
+        
     } else {
+        
+        //  Entry is not valid, to change bet text field back to current bet, and
+        //  return the focus back to the text field, keeping the main button disabled.
+        
         _betTextField.text = [[NSString alloc] initWithFormat:@"%i", _pokerMachine.currentBet];
         [_betTextField becomeFirstResponder];
+
     }
-    
 }
+
+
+//  Private method to validate the bet entry, to make sure it's a positive whole number,
+//  and that it does not exceed the amount of cash available. Returns YES if the bet is
+//  valid, and NO if it is not.
 
 - (BOOL)validateBetEntry {
     NSString * betText = _betTextField.text;
@@ -175,6 +229,7 @@
     }
     
     betValue = strtoll(buffer, &endptr, 10);
+    
     if ( *endptr || betValue < 1 ) {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"That's not a valid bet!" message:@"You must enter a positive whole number!" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [alert show];
@@ -187,4 +242,5 @@
     
     return YES;
 }
+
 @end
