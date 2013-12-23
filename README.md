@@ -30,6 +30,12 @@ Licensing
 ---------
 Please see the file called LICENSE.
 
+Acknowledgements
+----------------
+Playing card images derived from Chris Aguilar's Vectorized Playing Cards 1.3 Graphics
+Library located at <http://code.google.com/p/vectorized-playing-cards/> and
+licensed under the GNU Lesser General Public License 3.0.
+
 Contacts
 --------
 * If you have a concrete bug report for **Video Poker** please go to the GitHub
