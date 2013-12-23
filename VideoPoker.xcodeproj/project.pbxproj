@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA38029E1868868D00C14CA5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DA38029D1868868D00C14CA5 /* README.md */; };
 		DA6B3F3A1865F75500D41613 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6B3F391865F75500D41613 /* Foundation.framework */; };
 		DA6B3F3C1865F75500D41613 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6B3F3B1865F75500D41613 /* CoreGraphics.framework */; };
 		DA6B3F3E1865F75500D41613 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6B3F3D1865F75500D41613 /* UIKit.framework */; };
@@ -103,6 +104,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DA38029D1868868D00C14CA5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		DA6B3F361865F75500D41613 /* VideoPoker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoPoker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA6B3F391865F75500D41613 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DA6B3F3B1865F75500D41613 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -220,6 +222,7 @@
 		DA6B3F2D1865F75500D41613 = {
 			isa = PBXGroup;
 			children = (
+				DA38029D1868868D00C14CA5 /* README.md */,
 				DA6B3F3F1865F75500D41613 /* VideoPoker */,
 				DA6B3F5E1865F75500D41613 /* VideoPokerTests */,
 				DA6B3F381865F75500D41613 /* Frameworks */,
@@ -486,6 +489,7 @@
 				DA8724721865F98A00229280 /* 47.gif in Resources */,
 				DA87244C1865F98A00229280 /* 12.gif in Resources */,
 				DA8724621865F98A00229280 /* 32.gif in Resources */,
+				DA38029E1868868D00C14CA5 /* README.md in Resources */,
 				DA87246F1865F98A00229280 /* 44.gif in Resources */,
 				DA87246A1865F98A00229280 /* 4.gif in Resources */,
 				DA8724781865F98A00229280 /* 52.gif in Resources */,
