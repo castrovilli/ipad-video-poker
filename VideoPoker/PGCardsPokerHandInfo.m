@@ -27,6 +27,7 @@
         _royalFlush = NO;
         _pokerHandType = POKERHAND_NOTEVALUATED;
         _videoPokerHandType = VIDEOPOKERHAND_NOTEVALUATED;
+        _score = 0;
     }
     
     return self;
@@ -48,6 +49,7 @@
     _royalFlush = NO;
     _pokerHandType = POKERHAND_NOTEVALUATED;
     _videoPokerHandType = VIDEOPOKERHAND_NOTEVALUATED;
+    _score = 0;
 }
 
 
@@ -81,6 +83,35 @@
 
 - (int)singleAtIndex:(int)index {
     return (((_singles << (index * 4)) & 0xF0000) >> 16);
+}
+
+
+//  Public method to add, in order of smallest first, a score element. This works in exactly the same way
+//  as the singles variable, except the most significant nibble of the score variable is the sixth
+//  leftmost, not the fifth.
+
+- (void)addScoreElement:(int)newElement {
+    _score = _score >> 4;
+    _score += (newElement << 20);
+}
+
+
+//  Public method to set the score equal to the singles variable. For high card hands and flushes,
+//  the ranking of hands of the same type looks to all five single cards, so the single variable
+//  also functions as the score, so provide a convenient way of copying it over.
+
+- (void)setScoreToSingles {
+    _score = _singles;
+}
+
+
+//  Public method to set the hand type in the score. It is sometimes convenient (e.g. when scoring
+//  a flush or a high card hand, where we have copied the single variable into the score) to add the
+//  hand type without shifting the entire score variable 4 bits to the right, so we provide a method
+//  for doing so.
+
+- (void)setScoreType:(enum PGCardsPokerHandType)handType {
+    _score = (_score & ~(0xF00000)) | (handType << 20);
 }
 
 

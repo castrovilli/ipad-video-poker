@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DA38029E1868868D00C14CA5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DA38029D1868868D00C14CA5 /* README.md */; };
 		DA3802A018690A6700C14CA5 /* PGCardsPokerHandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA38029F18690A6700C14CA5 /* PGCardsPokerHandTests.m */; };
+		DA496BD0186943D0004BACF9 /* PGCardsPokerHandScoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA496BCF186943D0004BACF9 /* PGCardsPokerHandScoreTests.m */; };
 		DA6B3F3A1865F75500D41613 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6B3F391865F75500D41613 /* Foundation.framework */; };
 		DA6B3F3C1865F75500D41613 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6B3F3B1865F75500D41613 /* CoreGraphics.framework */; };
 		DA6B3F3E1865F75500D41613 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6B3F3D1865F75500D41613 /* UIKit.framework */; };
@@ -107,6 +108,7 @@
 /* Begin PBXFileReference section */
 		DA38029D1868868D00C14CA5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		DA38029F18690A6700C14CA5 /* PGCardsPokerHandTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGCardsPokerHandTests.m; sourceTree = "<group>"; };
+		DA496BCF186943D0004BACF9 /* PGCardsPokerHandScoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGCardsPokerHandScoreTests.m; sourceTree = "<group>"; };
 		DA6B3F361865F75500D41613 /* VideoPoker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VideoPoker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA6B3F391865F75500D41613 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DA6B3F3B1865F75500D41613 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -301,6 +303,7 @@
 		DA6B3F5E1865F75500D41613 /* VideoPokerTests */ = {
 			isa = PBXGroup;
 			children = (
+				DA496BCF186943D0004BACF9 /* PGCardsPokerHandScoreTests.m */,
 				DA38029F18690A6700C14CA5 /* PGCardsPokerHandTests.m */,
 				DAE1C221186650E20060ACEF /* PGCardsHandTests.m */,
 				DA896B121866267A00303E2F /* PGCardsDeckTests.m */,
@@ -552,6 +555,7 @@
 			files = (
 				DA8724821865FB1900229280 /* PGCardsCard.m in Sources */,
 				DAB3CBD01866A69E00A54004 /* PGCardsPokerHandInfo.m in Sources */,
+				DA496BD0186943D0004BACF9 /* PGCardsPokerHandScoreTests.m in Sources */,
 				DAB3CBCC18668A3600A54004 /* PGCardsPokerTable.m in Sources */,
 				DA896B091866173300303E2F /* PGCardsCardComparisonTests.m in Sources */,
 				DA3802A018690A6700C14CA5 /* PGCardsPokerHandTests.m in Sources */,

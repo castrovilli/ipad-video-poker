@@ -62,6 +62,7 @@ enum PGCardsVideoPokerHandType {
 @property (nonatomic) int highCard;
 @property (nonatomic) enum PGCardsPokerHandType pokerHandType;
 @property (nonatomic) enum PGCardsVideoPokerHandType videoPokerHandType;
+@property (nonatomic) u_int32_t score;
 
 
 //  Public methods
@@ -70,6 +71,9 @@ enum PGCardsVideoPokerHandType {
 - (void)addSingle:(int)newSingle;
 - (BOOL)allSingles;
 - (int)singleAtIndex:(int)index;
+- (void)addScoreElement:(int)newElement;
+- (void)setScoreType:(enum PGCardsPokerHandType)handType;
+- (void)setScoreToSingles;
 
 
 @end

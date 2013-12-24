@@ -23,5 +23,9 @@
 -(int)evaluate;
 -(NSString *)evaluateString;
 
+-(BOOL)equalsHand:(PGCardsPokerHand *)otherHand;
+-(BOOL)beatsHand:(PGCardsPokerHand *)otherHand;
+-(BOOL)losesToHand:(PGCardsPokerHand *)otherHand;
+
 
 @end

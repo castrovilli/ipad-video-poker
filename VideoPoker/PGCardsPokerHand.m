@@ -52,27 +52,47 @@ static const int videoPokerWinningsTable[] = {0, 1, 2, 3, 4, 6, 9, 25, 50, 800};
     if ( _handInfo.royalFlush ) {
         _handInfo.pokerHandType = POKERHAND_ROYALFLUSH;
         _handInfo.videoPokerHandType = VIDEOPOKERHAND_ROYALFLUSH;
+        [_handInfo setScoreType:POKERHAND_ROYALFLUSH];
     } else if ( _handInfo.straightFlush ) {
         _handInfo.pokerHandType = POKERHAND_STRAIGHTFLUSH;
         _handInfo.videoPokerHandType = VIDEOPOKERHAND_STRAIGHTFLUSH;
+        [_handInfo addScoreElement:_handInfo.highCard];
+        [_handInfo addScoreElement:POKERHAND_STRAIGHTFLUSH];
     } else if ( _handInfo.four ) {
         _handInfo.pokerHandType = POKERHAND_FOUR;
         _handInfo.videoPokerHandType = VIDEOPOKERHAND_FOUR;
+        [_handInfo setScoreToSingles];
+        [_handInfo addScoreElement:_handInfo.four];
+        [_handInfo addScoreElement:POKERHAND_FOUR];
     } else if ( _handInfo.three && _handInfo.lowPair ) {
         _handInfo.pokerHandType = POKERHAND_FULLHOUSE;
         _handInfo.videoPokerHandType = VIDEOPOKERHAND_FULLHOUSE;
+        [_handInfo addScoreElement:_handInfo.lowPair];
+        [_handInfo addScoreElement:_handInfo.three];
+        [_handInfo addScoreElement:POKERHAND_FULLHOUSE];
     } else if ( _handInfo.flush ) {
         _handInfo.pokerHandType = POKERHAND_FLUSH;
         _handInfo.videoPokerHandType = VIDEOPOKERHAND_FLUSH;
+        [_handInfo setScoreToSingles];
+        [_handInfo setScoreType:POKERHAND_FLUSH];
     } else if ( _handInfo.straight ) {
         _handInfo.pokerHandType = POKERHAND_STRAIGHT;
         _handInfo.videoPokerHandType = VIDEOPOKERHAND_STRAIGHT;
+        [_handInfo addScoreElement:_handInfo.highCard];
+        [_handInfo addScoreElement:POKERHAND_STRAIGHT];
     } else if ( _handInfo.three ) {
         _handInfo.pokerHandType = POKERHAND_THREE;
         _handInfo.videoPokerHandType = VIDEOPOKERHAND_THREE;
+        [_handInfo setScoreToSingles];
+        [_handInfo addScoreElement:_handInfo.three];
+        [_handInfo addScoreElement:POKERHAND_THREE];
     } else if ( _handInfo.highPair ) {
         _handInfo.pokerHandType = POKERHAND_TWOPAIR;
         _handInfo.videoPokerHandType = VIDEOPOKERHAND_TWOPAIR;
+        [_handInfo setScoreToSingles];
+        [_handInfo addScoreElement:_handInfo.lowPair];
+        [_handInfo addScoreElement:_handInfo.highPair];
+        [_handInfo addScoreElement:POKERHAND_TWOPAIR];
     } else if ( _handInfo.lowPair ) {
         _handInfo.pokerHandType = POKERHAND_PAIR;
         
@@ -83,9 +103,14 @@ static const int videoPokerWinningsTable[] = {0, 1, 2, 3, 4, 6, 9, 25, 50, 800};
         } else {
             _handInfo.videoPokerHandType = VIDEOPOKERHAND_NOWIN;
         }
+        [_handInfo setScoreToSingles];
+        [_handInfo addScoreElement:_handInfo.lowPair];
+        [_handInfo addScoreElement:POKERHAND_PAIR];
     } else {
         _handInfo.pokerHandType = POKERHAND_HIGHCARD;
         _handInfo.videoPokerHandType = VIDEOPOKERHAND_NOWIN;
+        [_handInfo setScoreToSingles];
+        [_handInfo setScoreType:POKERHAND_HIGHCARD];
     }
     
     
@@ -93,6 +118,7 @@ static const int videoPokerWinningsTable[] = {0, 1, 2, 3, 4, 6, 9, 25, 50, 800};
     
     return videoPokerWinningsTable[_handInfo.videoPokerHandType];
 }
+
 
 
 //  Public method to get a string representation of the most recent evaluation
@@ -196,6 +222,23 @@ static const int videoPokerWinningsTable[] = {0, 1, 2, 3, 4, 6, 9, 25, 50, 800};
         _handInfo.straight = YES;
         _handInfo.highCard = 5;
     }
+}
+
+
+//  Public methods to compare poker hands by score
+
+- (BOOL)equalsHand:(PGCardsPokerHand *)otherHand {
+    return (_handInfo.score == otherHand.handInfo.score) ? YES : NO;
+}
+
+
+- (BOOL)beatsHand:(PGCardsPokerHand *)otherHand {
+    return (_handInfo.score > otherHand.handInfo.score) ? YES: NO;
+}
+
+
+- (BOOL)losesToHand:(PGCardsPokerHand *)otherHand {
+    return (_handInfo.score < otherHand.handInfo.score) ? YES : NO;
 }
 
 
