@@ -37,9 +37,9 @@ Library:
 
 > Vectorized Playing Cards 1.3- <http://code.google.com/p/vectorized-playing-cards/>  
 > Copyright 2011 - Chris Aguilar  
-> Licensed under LGPL 3 - www.gnu.org/copyleft/lesser.html  
+> Licensed under LGPL 3 - www.gnu.org/copyleft/lesser.htm
 
 Contacts
 --------
-* If you have a concrete bug report for **Video Poker** please go to the GitHub
+If you have a concrete bug report for **Video Poker** please go to the GitHub
 issue tracker at <https://github.com/paulgriffiths/ipad-video-poker/issues>.
