@@ -27,8 +27,8 @@ static const int CASH_INITIAL_VALUE = 1000;
 
 - (PGCardsPokerTable *)init {
     if ( (self = [super init]) ) {
-        _deck = [[PGCardsDeck alloc] init];
-        _hand = [[PGCardsPokerHand alloc] init];
+        _deck = [PGCardsDeck new];
+        _hand = [PGCardsPokerHand new];
         
         [self setGameState:POKER_GAMESTATE_INITIAL];
         [self resetBetAndCashToInitialValues];
@@ -245,13 +245,13 @@ static const int CASH_INITIAL_VALUE = 1000;
     if ( winRatio ) {
         NSNumberFormatter * nf = [NSNumberFormatter new];
         nf.numberStyle = NSNumberFormatterDecimalStyle;
-        winLoseString = [[NSString alloc] initWithFormat:@"You win $%@!",
+        winLoseString = [NSString stringWithFormat:@"You win $%@!",
                          [nf stringFromNumber:[NSNumber numberWithInt:winRatio * _currentBet]]];
     } else {
         winLoseString = @"Better luck next time!";
     }
     
-    _evaluationString = [[NSString alloc] initWithFormat:@"%@ %@", [_hand evaluateString], winLoseString];
+    _evaluationString = [NSString stringWithFormat:@"%@ %@", [_hand evaluateString], winLoseString];
 }
 
 

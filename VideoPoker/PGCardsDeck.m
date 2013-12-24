@@ -18,8 +18,8 @@
 
 - (PGCardsDeck *)init {
     if ( (self = [super init]) ) {
-        _mainDeck = [[NSMutableArray alloc] init];
-        _discardPile = [[NSMutableArray alloc] init];
+        _mainDeck = [NSMutableArray new];
+        _discardPile = [NSMutableArray new];
         
         //  Add cards in reverse order, so first card is at top of deck
         

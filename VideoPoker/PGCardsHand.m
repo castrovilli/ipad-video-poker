@@ -15,7 +15,7 @@
 
 - (PGCardsHand *)init {
     if ( (self = [super init]) ) {
-        _cards = [[NSMutableArray alloc] init];
+        _cards = [NSMutableArray new];
     }
     
     return self;

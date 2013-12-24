@@ -169,13 +169,13 @@
 //  Public instance methods to return long and short names of cards
 
 - (NSString *)longName {
-    return [[NSString alloc] initWithFormat:@"%@ of %@", [PGCardsCard getRankLongString:_rank],
+    return [NSString stringWithFormat:@"%@ of %@", [PGCardsCard getRankLongString:_rank],
             [PGCardsCard getSuitLongString:_suit]];
 }
 
 
 - (NSString *)shortName {
-    return [[NSString alloc] initWithFormat:@"%@%@", [PGCardsCard getRankShortString:_rank],
+    return [NSString stringWithFormat:@"%@%@", [PGCardsCard getRankShortString:_rank],
             [PGCardsCard getSuitShortString:_suit]];
 }
 

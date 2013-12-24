@@ -35,7 +35,7 @@
         fileString = @"card_back_blue";
     } else {
         int cardIndex = [_pokerMachine cardIndexAtPosition:cardPosition];
-        fileString = [[NSString alloc] initWithFormat:@"card%i", cardIndex];
+        fileString = [NSString stringWithFormat:@"card%i", cardIndex];
     }
     
     [_cardButtons[cardPosition - 1] setImage:[UIImage imageNamed:fileString] forState:UIControlStateNormal];
@@ -60,11 +60,10 @@
 {
     [super viewDidLoad];
 
-    _cardButtons = [[NSArray alloc] initWithObjects:_cardButton1, _cardButton2,
-                    _cardButton3, _cardButton4, _cardButton5, nil];
+    _cardButtons = @[_cardButton1, _cardButton2, _cardButton3, _cardButton4, _cardButton5];
     [self enableCardButtons:NO andBetTextField:YES];
     
-    _pokerMachine = [[PGCardsPokerTable alloc] init];
+    _pokerMachine = [PGCardsPokerTable new];
     [self updateBetAndWinnings];
 }
 
@@ -82,10 +81,10 @@
 - (void)updateBetAndWinnings {
     NSNumberFormatter * nf = [NSNumberFormatter new];
     nf.numberStyle = NSNumberFormatterDecimalStyle;
-    _winningsLabel.text = [[NSString alloc] initWithFormat:@"$%@",
+    _winningsLabel.text = [NSString stringWithFormat:@"$%@",
                            [nf stringFromNumber:[NSNumber numberWithInt:_pokerMachine.currentCash]]];
     
-    _betTextField.text = [[NSString alloc] initWithFormat:@"%i", _pokerMachine.currentBet];
+    _betTextField.text = [NSString stringWithFormat:@"%i", _pokerMachine.currentBet];
 }
 
 
@@ -207,7 +206,7 @@
         //  Entry is not valid, to change bet text field back to current bet, and
         //  return the focus back to the text field, keeping the main button disabled.
         
-        _betTextField.text = [[NSString alloc] initWithFormat:@"%i", _pokerMachine.currentBet];
+        _betTextField.text = [NSString stringWithFormat:@"%i", _pokerMachine.currentBet];
         [_betTextField becomeFirstResponder];
 
     }
