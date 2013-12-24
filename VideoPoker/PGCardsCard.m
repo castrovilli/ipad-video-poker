@@ -73,7 +73,7 @@
 + (NSString *)getSuitLongString:(int)suit {
     static NSArray * suitNames = nil;
     if ( !suitNames ) {
-        suitNames = [[NSArray alloc] initWithObjects:@"clubs", @"hearts", @"spades", @"diamonds", nil];
+        suitNames = @[@"clubs", @"hearts", @"spades", @"diamonds"];
     }
     return suitNames[suit];
 }
@@ -85,8 +85,8 @@
 + (NSString *)getRankLongString:(int)rank {
     static NSArray * rankNames = nil;
     if ( !rankNames ) {
-        rankNames = [[NSArray alloc] initWithObjects:@"ace", @"two", @"three", @"four", @"five",
-                      @"six", @"seven", @"eight", @"nine", @"ten", @"jack", @"queen", @"king", @"ace", nil];
+        rankNames = @[@"ace", @"two", @"three", @"four", @"five", @"six", @"seven",
+                      @"eight", @"nine", @"ten", @"jack", @"queen", @"king", @"ace"];
     }
     return rankNames[rank - 1];
 }
