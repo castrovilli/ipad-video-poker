@@ -12,9 +12,7 @@
 static const int videoPokerWinningsTable[] = {0, 1, 2, 3, 4, 6, 9, 25, 50, 800};
 
 
-@implementation PGCardsPokerHand {
-    PGCardsPokerHandInfo * _handInfo;
-}
+@implementation PGCardsPokerHand
 
 
 //  Initializer method
@@ -199,5 +197,6 @@ static const int videoPokerWinningsTable[] = {0, 1, 2, 3, 4, 6, 9, 25, 50, 800};
         _handInfo.highCard = 5;
     }
 }
+
 
 @end

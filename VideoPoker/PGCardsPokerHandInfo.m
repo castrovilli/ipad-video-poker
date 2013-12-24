@@ -25,6 +25,8 @@
         _flush = NO;
         _straightFlush = NO;
         _royalFlush = NO;
+        _pokerHandType = POKERHAND_NOTEVALUATED;
+        _videoPokerHandType = VIDEOPOKERHAND_NOTEVALUATED;
     }
     
     return self;
@@ -44,6 +46,8 @@
     _flush = NO;
     _straightFlush = NO;
     _royalFlush = NO;
+    _pokerHandType = POKERHAND_NOTEVALUATED;
+    _videoPokerHandType = VIDEOPOKERHAND_NOTEVALUATED;
 }
 
 

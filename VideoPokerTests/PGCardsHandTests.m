@@ -108,4 +108,19 @@
 }
 
 
+- (void)testAddCardsFromArray
+{
+    PGCardsHand * hand = [PGCardsHand new];
+    [hand addCardsFromArrayOfShortNames:@[@"AC", @"2H", @"3S", @"9D", @"TC", @"JH", @"QS", @"KD"]];
+    XCTAssertEqual([hand cardIndexAtPosition:1], 0);
+    XCTAssertEqual([hand cardIndexAtPosition:2], 14);
+    XCTAssertEqual([hand cardIndexAtPosition:3], 28);
+    XCTAssertEqual([hand cardIndexAtPosition:4], 47);
+    XCTAssertEqual([hand cardIndexAtPosition:5], 9);
+    XCTAssertEqual([hand cardIndexAtPosition:6], 23);
+    XCTAssertEqual([hand cardIndexAtPosition:7], 37);
+    XCTAssertEqual([hand cardIndexAtPosition:8], 51);
+ 
+}
+
 @end

@@ -69,7 +69,7 @@
     int index = 0;
     for ( int suit = 0; suit < 4; ++suit ) {
         for ( int rank = 1; rank < 14; ++rank ) {
-           PGCardsCard * card = [[PGCardsCard alloc] initWithRank:rank andSuit:suit];
+            PGCardsCard * card = [[PGCardsCard alloc] initWithRank:rank andSuit:suit];
             XCTAssertNotNil(card);
             XCTAssertEqual([card index], index++);
         }
@@ -94,6 +94,22 @@
 }
 
 
+-(void)testInitWithShortName {
+    char ranks[] = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
+    char suits[] = {'C', 'H', 'S', 'D'};
+    int testIndex = 0;
+
+    for ( int suit = 0; suit < (sizeof(suits) / sizeof(suits[0])); ++suit ) {
+        for ( int rank = 0; rank < (sizeof(ranks) / sizeof(ranks[0])); ++rank ) {
+            NSString * shortName = [[NSString alloc] initWithFormat:@"%c%c", ranks[rank], suits[suit]];
+            PGCardsCard * newCard = [[PGCardsCard alloc] initWithShortName:shortName];
+            XCTAssertNotNil(newCard);
+            XCTAssertEqual(newCard.index, testIndex++);
+        }
+    }
+}
+
+
 //  Tests correct short name of card is returned
 
 - (void)testCardShortName
@@ -108,7 +124,6 @@
     for ( int i = 0; i < 52; ++i ) {
         PGCardsCard * card = [[PGCardsCard alloc] initWithIndex:i];
         XCTAssert([[card shortName] isEqualToString:shortNames[i]]);
-        NSLog(@"Short name: %@", shortNames[i]);
     }
 }
 

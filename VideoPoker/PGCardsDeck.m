@@ -13,7 +13,8 @@
     NSMutableArray * _discardPile;
 }
 
-//  Initialization methods
+
+//  Initialization method
 
 - (PGCardsDeck *)init {
     if ( (self = [super init]) ) {
@@ -37,6 +38,7 @@
     return [_mainDeck count];
 }
 
+
 - (NSUInteger)discardPileSize {
     return [_discardPile count];
 }
@@ -46,6 +48,7 @@
 
 - (void)shuffle {
     NSUInteger deckSize = [_mainDeck count];
+
     for ( NSUInteger fromIndex = 0; fromIndex < deckSize; ++fromIndex ) {
         NSUInteger num_remaining = deckSize - fromIndex;
         NSUInteger toIndex = arc4random_uniform((u_int32_t) num_remaining) + fromIndex;
@@ -61,19 +64,24 @@
 
 - (PGCardsCard *)drawTopCard {
     PGCardsCard * topCard = [_mainDeck lastObject];
+
     if ( topCard ) {
         [_mainDeck removeLastObject];
     }
+
     return topCard;
 }
+
 
 - (NSMutableArray *)drawTopCards:(int)numCards {
     PGCardsCard * card;
     NSMutableArray * drawnCards = [[NSMutableArray alloc] init];
+
     while ( numCards-- && (card = [_mainDeck lastObject]) ) {
         [drawnCards addObject:card];
         [_mainDeck removeLastObject];
     }
+
     return drawnCards;
 }
 
@@ -85,19 +93,23 @@
     [_discardPile addObject:card];
 }
 
+
 - (void)addCardsToDiscards:(NSMutableArray *)cards {
     for ( id array_object in cards ) {
         if ( ![array_object isMemberOfClass:[PGCardsCard class]] ) {
             assert(0);
         }
     }
+
     [_discardPile addObjectsFromArray:cards];
     [cards removeAllObjects];
 }
+
 
 - (void)replaceDiscards {
     [_mainDeck addObjectsFromArray:_discardPile];
     [_discardPile removeAllObjects];
 }
+
 
 @end

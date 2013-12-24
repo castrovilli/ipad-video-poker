@@ -8,10 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import "PGCardsHand.h"
+#import "PGCardsPokerHandInfo.h"
 
 @interface PGCardsPokerHand : PGCardsHand
 
+
+//  Property
+
+@property (strong, nonatomic, readonly) PGCardsPokerHandInfo * handInfo;
+
+
+//  Public instance methods
+
 -(int)evaluate;
 -(NSString *)evaluateString;
+
 
 @end

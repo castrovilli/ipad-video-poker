@@ -262,5 +262,4 @@ static const int CASH_INITIAL_VALUE = 1000;
 }
 
 
-
 @end

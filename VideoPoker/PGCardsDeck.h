@@ -11,8 +11,14 @@
 
 @interface PGCardsDeck : NSObject
 
+
+//  Properties
+
 @property (nonatomic, readonly) NSUInteger size;
 @property (nonatomic, readonly) NSUInteger discardPileSize;
+
+
+//  Public instance methods
 
 -(void)shuffle;
 -(PGCardsCard *)drawTopCard;
@@ -20,5 +26,6 @@
 -(void)addCardToDiscards:(PGCardsCard *)card;
 -(void)addCardsToDiscards:(NSMutableArray *)cards;
 -(void)replaceDiscards;
+
 
 @end

@@ -8,8 +8,8 @@
 
 #import "PGCardsHand.h"
 
-@implementation PGCardsHand {
-}
+@implementation PGCardsHand
+
 
 //  Initialization method
 
@@ -29,6 +29,15 @@
 }
 
 
+//  Public method to add arbitrary cards from an array of short names
+
+- (void)addCardsFromArrayOfShortNames:(NSArray *)cardNames {
+    for ( NSString * cardName in cardNames ) {
+        [_cards addObject:[[PGCardsCard alloc] initWithShortName:cardName]];
+    }
+}
+
+
 //  Public method to draw the specified number of cards from the specified deck and add to the hand
 
 - (void)drawCards:(int)numCards fromDeck:(PGCardsDeck *)deck {
@@ -40,7 +49,6 @@
 
 - (void)discardAllCardsToDeck:(PGCardsDeck *)deck {
     [deck addCardsToDiscards:_cards];
-//  [_cards removeAllObjects];
 }
 
 
@@ -52,7 +60,7 @@
         return -1;
     }
     
-    [deck addCardToDiscards:_cards[position -1]];
+    [deck addCardToDiscards:_cards[position - 1]];
     [_cards removeObjectAtIndex:(position - 1)];
     [_cards insertObject:newCard atIndex:(position - 1)];
     
@@ -70,6 +78,7 @@
     return ((PGCardsCard *) _cards[position - 1]).index;
 }
 
+
 - (int)cardRankAtPosition:(int)position {
     if ( position > [_cards count] || position < 1 ) {
         return -1;
@@ -77,6 +86,7 @@
     
     return ((PGCardsCard *) _cards[position - 1]).rank;
 }
+
 
 - (int)cardSuitAtPosition:(int)position {
     if ( position > [_cards count] || position < 1 ) {
