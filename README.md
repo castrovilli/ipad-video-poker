@@ -24,7 +24,7 @@ Up-to-date documentation can be found at
 Installation
 ------------
 **Video Poker** is written in Objective C, and is provided in the form of
-an Xcode project.
+an Xcode 5 project.
 
 Licensing
 ---------
