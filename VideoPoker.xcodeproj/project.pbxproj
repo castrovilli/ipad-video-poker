@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DA033040186B43AF00C95162 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA03303F186B43AF00C95162 /* SettingsViewController.m */; };
+		DA033043186B7BB000C95162 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = DA033042186B7BB000C95162 /* LICENSE */; };
 		DA38029E1868868D00C14CA5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DA38029D1868868D00C14CA5 /* README.md */; };
 		DA3802A018690A6700C14CA5 /* PGCardsPokerHandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA38029F18690A6700C14CA5 /* PGCardsPokerHandTests.m */; };
 		DA496BD0186943D0004BACF9 /* PGCardsPokerHandScoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA496BCF186943D0004BACF9 /* PGCardsPokerHandScoreTests.m */; };
@@ -110,6 +111,7 @@
 		DA03303E186B43AF00C95162 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		DA03303F186B43AF00C95162 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		DA033041186B451400C95162 /* OptionsTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsTypes.h; sourceTree = "<group>"; };
+		DA033042186B7BB000C95162 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		DA38029D1868868D00C14CA5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		DA38029F18690A6700C14CA5 /* PGCardsPokerHandTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGCardsPokerHandTests.m; sourceTree = "<group>"; };
 		DA496BCF186943D0004BACF9 /* PGCardsPokerHandScoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGCardsPokerHandScoreTests.m; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 		DA6B3F2D1865F75500D41613 = {
 			isa = PBXGroup;
 			children = (
+				DA033042186B7BB000C95162 /* LICENSE */,
 				DA38029D1868868D00C14CA5 /* README.md */,
 				DA6B3F3F1865F75500D41613 /* VideoPoker */,
 				DA6B3F5E1865F75500D41613 /* VideoPokerTests */,
@@ -521,6 +524,7 @@
 				DA8724661865F98A00229280 /* 36.gif in Resources */,
 				DA87245C1865F98A00229280 /* 27.gif in Resources */,
 				DA87247E1865F98A00229280 /* j.gif in Resources */,
+				DA033043186B7BB000C95162 /* LICENSE in Resources */,
 				DA8724491865F98A00229280 /* 1.gif in Resources */,
 				DA8724741865F98A00229280 /* 49.gif in Resources */,
 				DA87244D1865F98A00229280 /* 13.gif in Resources */,
