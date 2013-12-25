@@ -105,7 +105,9 @@ static const int CASH_INITIAL_VALUE = 1000;
         
         [self replaceFlippedCards];
         
-        int winRatio = [_hand evaluate];
+        [_hand evaluate];
+        int winRatio = [self getPayoutRatioForHand:_hand.handInfo.videoPokerHandType withType:self.payoutOption];
+        
         [self updateCashAndBetWithWinRatio:winRatio];
         [self setEvaluationStringWithWinRatio:winRatio];
         
@@ -157,6 +159,68 @@ static const int CASH_INITIAL_VALUE = 1000;
         NSLog(@"Unrecognized game state in advanceGameState:");
         assert(0);
         
+    }
+}
+
+
+//  Public method to return payout ratio
+
+- (int)getPayoutRatioForHand:(enum PGCardsVideoPokerHandType)handType withType:(enum PayoutChoiceOptions)payoutOption {
+    static const int videoPokerWinningsTableNormal[] = {0, 1, 2, 3, 4, 6, 9, 25, 50, 800};
+    static const int videoPokerWinningsTableEasy[] = {0, 2, 3, 4, 15, 20, 50, 100, 250, 2500};
+    int idx;
+    
+    switch ( handType ) {
+        case VIDEOPOKERHAND_NOWIN:
+            idx = 0;
+            break;
+            
+        case VIDEOPOKERHAND_JACKSORBETTER:
+            idx = 1;
+            break;
+            
+        case VIDEOPOKERHAND_TWOPAIR:
+            idx = 2;
+            break;
+            
+        case VIDEOPOKERHAND_THREE:
+            idx = 3;
+            break;
+            
+        case VIDEOPOKERHAND_STRAIGHT:
+            idx = 4;
+            break;
+            
+        case VIDEOPOKERHAND_FLUSH:
+            idx = 5;
+            break;
+            
+        case VIDEOPOKERHAND_FULLHOUSE:
+            idx = 6;
+            break;
+            
+        case VIDEOPOKERHAND_FOUR:
+            idx = 7;
+            break;
+            
+        case VIDEOPOKERHAND_STRAIGHTFLUSH:
+            idx = 8;
+            break;
+            
+        case VIDEOPOKERHAND_ROYALFLUSH:
+            idx = 9;
+            break;
+            
+        case VIDEOPOKERHAND_NOTEVALUATED:
+        default:
+            assert(0);
+            break;
+    }
+    
+    if ( payoutOption == PAYOUT_CHOICE_NORMAL ) {
+        return videoPokerWinningsTableNormal[idx];
+    } else {
+        return videoPokerWinningsTableEasy[idx];
     }
 }
 

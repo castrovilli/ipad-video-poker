@@ -9,8 +9,6 @@
 #import "PGCardsPokerHand.h"
 #import "PGCardsPokerHandInfo.h"
 
-static const int videoPokerWinningsTable[] = {0, 1, 2, 3, 4, 6, 9, 25, 50, 800};
-
 
 @implementation PGCardsPokerHand
 
@@ -28,7 +26,7 @@ static const int videoPokerWinningsTable[] = {0, 1, 2, 3, 4, 6, 9, 25, 50, 800};
 
 //  Public method to evaluate the poker hand
 
-- (int) evaluate {
+- (void) evaluate {
     [_handInfo resetInfo];
     [self getRankMatches];
     
@@ -112,11 +110,6 @@ static const int videoPokerWinningsTable[] = {0, 1, 2, 3, 4, 6, 9, 25, 50, 800};
         [_handInfo setScoreToSingles];
         [_handInfo setScoreType:POKERHAND_HIGHCARD];
     }
-    
-    
-    //  Return win ratio for the type of poker hand
-    
-    return videoPokerWinningsTable[_handInfo.videoPokerHandType];
 }
 
 

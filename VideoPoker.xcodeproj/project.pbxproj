@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA033040186B43AF00C95162 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA03303F186B43AF00C95162 /* SettingsViewController.m */; };
 		DA38029E1868868D00C14CA5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DA38029D1868868D00C14CA5 /* README.md */; };
 		DA3802A018690A6700C14CA5 /* PGCardsPokerHandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA38029F18690A6700C14CA5 /* PGCardsPokerHandTests.m */; };
 		DA496BD0186943D0004BACF9 /* PGCardsPokerHandScoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA496BCF186943D0004BACF9 /* PGCardsPokerHandScoreTests.m */; };
@@ -106,6 +107,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DA03303E186B43AF00C95162 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		DA03303F186B43AF00C95162 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		DA033041186B451400C95162 /* OptionsTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsTypes.h; sourceTree = "<group>"; };
 		DA38029D1868868D00C14CA5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		DA38029F18690A6700C14CA5 /* PGCardsPokerHandTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGCardsPokerHandTests.m; sourceTree = "<group>"; };
 		DA496BCF186943D0004BACF9 /* PGCardsPokerHandScoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGCardsPokerHandScoreTests.m; sourceTree = "<group>"; };
@@ -277,6 +281,9 @@
 				DA6B3F481865F75500D41613 /* VideoPokerAppDelegate.h */,
 				DA6B3F491865F75500D41613 /* VideoPokerAppDelegate.m */,
 				DA6B3F4B1865F75500D41613 /* Main.storyboard */,
+				DA033041186B451400C95162 /* OptionsTypes.h */,
+				DA03303E186B43AF00C95162 /* SettingsViewController.h */,
+				DA03303F186B43AF00C95162 /* SettingsViewController.m */,
 				DA496BCE18691D59004BACF9 /* PGCards */,
 				DA6B3F4E1865F75500D41613 /* VideoPokerViewController.h */,
 				DA6B3F4F1865F75500D41613 /* VideoPokerViewController.m */,
@@ -544,6 +551,7 @@
 				DAB3CBCF1866A69E00A54004 /* PGCardsPokerHandInfo.m in Sources */,
 				DA896B10186624DC00303E2F /* PGCardsDeck.m in Sources */,
 				DA8724811865FB1900229280 /* PGCardsCard.m in Sources */,
+				DA033040186B43AF00C95162 /* SettingsViewController.m in Sources */,
 				DA6B3F501865F75500D41613 /* VideoPokerViewController.m in Sources */,
 				DAF6455E18667374007E91D2 /* PGCardsPokerHand.m in Sources */,
 			);

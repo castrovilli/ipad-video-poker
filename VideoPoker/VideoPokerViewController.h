@@ -44,4 +44,17 @@
 - (IBAction)betFieldEditEnd:(id)sender;
 
 
+//  Properties for payout table labels
+@property (strong, nonatomic) IBOutlet UILabel *jacksPayoutLabel;
+@property (strong, nonatomic) IBOutlet UILabel *pairPayoutLabel;
+@property (strong, nonatomic) IBOutlet UILabel *threePayoutLabel;
+@property (strong, nonatomic) IBOutlet UILabel *straightPayoutLabel;
+@property (strong, nonatomic) IBOutlet UILabel *flushPayoutLabel;
+@property (strong, nonatomic) IBOutlet UILabel *fullHousePayoutLabel;
+@property (strong, nonatomic) IBOutlet UILabel *fourPayoutLabel;
+@property (strong, nonatomic) IBOutlet UILabel *straightFlushPayoutLabel;
+@property (strong, nonatomic) IBOutlet UILabel *royalFlushPayoutLabel;
+
+
+
 @end

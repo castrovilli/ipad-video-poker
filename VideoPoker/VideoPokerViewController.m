@@ -8,10 +8,14 @@
 
 #import "VideoPokerViewController.h"
 #import "PGCardsPokerTable.h"
+#import "SettingsViewController.h"
+
 
 @interface VideoPokerViewController () {
     PGCardsPokerTable * _pokerMachine;
     NSArray * _cardButtons;
+    enum PayoutChoiceOptions _payoutChoice;
+    enum CardBacksChoiceOptions _cardBacksChoice;
 }
 
 @end
@@ -32,7 +36,11 @@
     NSString * fileString;
     
     if ( [_pokerMachine isCardFlipped:cardPosition] ) {
-        fileString = @"card_back_blue";
+        if ( _cardBacksChoice == CARDBACKS_CHOICE_BLUE ) {
+            fileString = @"card_back_blue";
+        } else {
+            fileString = @"card_back_red";
+        }
     } else {
         int cardIndex = [_pokerMachine cardIndexAtPosition:cardPosition];
         fileString = [NSString stringWithFormat:@"card%i", cardIndex];
@@ -40,6 +48,38 @@
     
     [_cardButtons[cardPosition - 1] setImage:[UIImage imageNamed:fileString] forState:UIControlStateNormal];
     
+}
+
+
+//  Private method for setting payout table labels
+
+- (void)drawPayoutTableLabels {
+    static const enum PGCardsVideoPokerHandType handTypes[] = {
+        VIDEOPOKERHAND_NOWIN,
+        VIDEOPOKERHAND_JACKSORBETTER,
+        VIDEOPOKERHAND_TWOPAIR,
+        VIDEOPOKERHAND_THREE,
+        VIDEOPOKERHAND_STRAIGHT,
+        VIDEOPOKERHAND_FLUSH,
+        VIDEOPOKERHAND_FULLHOUSE,
+        VIDEOPOKERHAND_FOUR,
+        VIDEOPOKERHAND_STRAIGHTFLUSH,
+        VIDEOPOKERHAND_ROYALFLUSH
+    };
+    
+    NSArray * payoutTableLabels = @[_jacksPayoutLabel, _pairPayoutLabel, _threePayoutLabel,
+                                    _straightPayoutLabel, _flushPayoutLabel, _fullHousePayoutLabel,
+                                    _fourPayoutLabel, _straightFlushPayoutLabel, _royalFlushPayoutLabel];
+    for ( int idx = 1; idx < 10; ++idx ) {
+        UILabel * currentLabel = payoutTableLabels[idx - 1];
+        int currentPayout = [_pokerMachine getPayoutRatioForHand:handTypes[idx] withType:_payoutChoice];
+        
+        NSNumberFormatter * nf = [NSNumberFormatter new];
+        nf.numberStyle = NSNumberFormatterDecimalStyle;
+        currentLabel.text = [NSString stringWithFormat:@"%@:1",
+                               [nf stringFromNumber:[NSNumber numberWithInt:currentPayout]]];
+
+    }
 }
 
 
@@ -54,7 +94,7 @@
 }
 
 
-//  Standard viewDidLoad and didReceiveMemoryWarning methods
+//  Standard viewDidLoad methods
 
 - (void)viewDidLoad
 {
@@ -65,8 +105,34 @@
     
     _pokerMachine = [PGCardsPokerTable new];
     [self updateBetAndWinnings];
+    
+    _cardBacksChoice = CARDBACKS_CHOICE_BLUE;
+    _payoutChoice = PAYOUT_CHOICE_NORMAL;
 }
 
+
+//  Method to update card backs and payout table when view appears, primarily
+//  intended for when the settings view returns
+
+- (void)viewWillAppear:(BOOL)animated {
+    _pokerMachine.payoutOption = _payoutChoice;
+    [self drawCards];
+    [self drawPayoutTableLabels];
+}
+
+
+//  Method to pass information to the settings view controller prior to segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ( [[segue identifier] isEqualToString:@"settingsSegue"] ) {
+        SettingsViewController * controller = [segue destinationViewController];
+        controller.payoutChoice = &_payoutChoice;
+        controller.cardBacksChoice = &_cardBacksChoice;
+    }
+}
+
+
+//  Standard didReceiveMemoryWarning method
 
 - (void)didReceiveMemoryWarning
 {

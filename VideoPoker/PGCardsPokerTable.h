@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PGCardsPokerHandInfo.h"
+#import "OptionsTypes.h"
 
 
 //  Enumeration for game state. See implementation for explanations of each state.
@@ -31,6 +33,7 @@ enum PGCardsPokerGameState {
 @property (strong, nonatomic) NSString * evaluationString;
 @property (nonatomic, readonly) int currentCash;
 @property (nonatomic) int currentBet;
+@property (nonatomic) enum PayoutChoiceOptions payoutOption;
 
 
 //  Public methods
@@ -40,6 +43,7 @@ enum PGCardsPokerGameState {
 -(void)replaceFlippedCards;
 -(int)cardIndexAtPosition:(int)position;
 -(void)advanceGameState;
+- (int)getPayoutRatioForHand:(enum PGCardsVideoPokerHandType)handType withType:(enum PayoutChoiceOptions)payoutOption;
 
 
 @end

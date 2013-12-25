@@ -20,7 +20,7 @@
 
 //  Public instance methods
 
--(int)evaluate;
+-(void)evaluate;
 -(NSString *)evaluateString;
 
 -(BOOL)equalsHand:(PGCardsPokerHand *)otherHand;
